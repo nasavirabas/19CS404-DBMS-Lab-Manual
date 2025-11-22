@@ -1,143 +1,90 @@
-# ER Diagram Workshop – Submission Template
+## ER Diagram Submission 
+## Name - Sabarivasan V
+## Register No - 212222060206
 
-## Objective
-To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
+## Scenario Chosen:
+ Hospital Management System - ER Diagram
 
-## Purpose
-Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
+## ER Diagram:
+![Screenshot 2025-04-30 060300](https://github.com/user-attachments/assets/796865d6-081d-4f4b-9139-1ebfeb7712c0)
 
----
+## Entities and Attributes:
 
-# Scenario A: City Fitness Club Management
+1. PATIENT
+   
+Attributes:
+PATIENT_ID (Primary Key),
+NAME,
+GENDER,
+EMAIL_ID,
+PHONE_NO
 
-**Business Context:**  
-FlexiFit Gym wants a database to manage its members, trainers, and fitness programs.
+2. APPOINTMENT
 
-**Requirements:**  
-- Members register with name, membership type, and start date.  
-- Each member can join multiple programs (Yoga, Zumba, Weight Training).  
-- Trainers assigned to programs; a program may have multiple trainers.  
-- Members may book personal training sessions with trainers.  
-- Attendance recorded for each session.  
-- Payments tracked for memberships and sessions.
+Attributes:
+APPOINT_ID (Primary Key),
+TIMING
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+3. DOCTOR
+   
+Attributes:
+DOCTOR_ID (Primary Key),
+NAME,
+EMAIL_ID,
+EXPERIENCE,
+SALARY
 
-### Entities and Attributes
+4. DEPARTMENT
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+Attributes:
+DEPT_ID (Primary Key),
+NAME,
+LOCATION
 
-### Relationships and Constraints
+## Relationships and Constraints:
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
 
-### Assumptions
-- 
-- 
-- 
+1. BOOK (between PATIENT and APPOINTMENT)
 
----
+Cardinality: One PATIENT can book many APPOINTMENTs; one APPOINTMENT is booked by one PATIENT.
 
-# Scenario B: City Library Event & Book Lending System
+Participation: Total on PATIENT side (each appointment must be booked by a patient)
 
-**Business Context:**  
-The Central Library wants to manage book lending and cultural events.
 
-**Requirements:**  
-- Members borrow books, with loan and return dates tracked.  
-- Each book has title, author, and category.  
-- Library organizes events; members can register.  
-- Each event has one or more speakers/authors.  
-- Rooms are booked for events and study.  
-- Overdue fines apply for late returns.
+2. ASSIGN (between APPOINTMENT and DOCTOR)
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+Cardinality: One APPOINTMENT is assigned to one DOCTOR; one DOCTOR can have many APPOINTMENTs.
 
-### Entities and Attributes
+Participation: Total on both sides (every appointment must have a doctor, and every doctor is assigned at least one appointment)
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
 
-### Relationships and Constraints
+3. SPECIALIZATION (between DOCTOR and DEPARTMENT)
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+Cardinality: One DOCTOR belongs to one DEPARTMENT; one DEPARTMENT can have many DOCTORs.
 
-### Assumptions
-- 
-- 
-- 
+Participation: Total on DOCTOR side
 
----
+## Extension (Prerequisite / Billing):
 
-# Scenario C: Restaurant Table Reservation & Ordering
+Billing is not shown in this diagram. However, it could be modeled by:
+Creating a new BILLING entity with attributes such as BILL_ID, AMOUNT, METHOD, etc.
+Connecting it with the APPOINTMENT entity via a relationship like PAY.
 
-**Business Context:**  
-A popular restaurant wants to manage reservations, orders, and billing.
+Prerequisite logic (e.g., doctor qualification before assignment) is indirectly represented via the EXPERIENCE and SPECIALIZATION attributes but isn't enforced explicitly in this diagram.
 
-**Requirements:**  
-- Customers can reserve tables or walk in.  
-- Each reservation includes date, time, and number of guests.  
-- Customers place food orders linked to reservations.  
-- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
-- Bills generated per reservation, including food and service charges.  
-- Waiters assigned to serve reservations.
+## Design Choices:
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
+1. Clear Entity Separation: Each real-world object (patient, doctor, appointment, department) is modeled as a separate entity.
 
-### Entities and Attributes
+2. Attributes Directly Tied: All relevant information is directly tied to its entity for simplicity.
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+3. Logical Relationships: BOOK, ASSIGN, and SPECIALIZATION relationships logically represent interactions between entities.
 
-### Relationships and Constraints
+4. Normalization: Redundancy is avoided by separating DOCTOR and DEPARTMENT.
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+5. Proper Use of Primary Keys: Unique identifiers (IDs) are used for easy relational mapping in databases.
 
-### Assumptions
-- 
-- 
-- 
+## Result:
 
----
-
-## Instructions for Students
-
-1. Complete **all three scenarios** (A, B, C).  
-2. Identify entities, relationships, and attributes for each.  
-3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
-4. Fill in all tables and assumptions for each scenario.  
-5. Export the completed Markdown (with diagrams) as **a single PDF**
+The ER diagram successfully models a hospital system where patients book appointments with doctors, and doctors belong to departments.
+It clearly represents entities, relationships, and constraints required for efficient appointment and doctor management.

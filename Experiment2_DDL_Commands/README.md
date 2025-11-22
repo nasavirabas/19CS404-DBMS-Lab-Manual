@@ -1,3 +1,7 @@
+Name: Sabarivasan V
+
+Reg No: 212222060206
+
 # Experiment 2: DDL Commands
 
 ## AIM
@@ -102,127 +106,268 @@ CREATE TABLE Table_Name (
   col_name3 data_type DEFAULT 'default_value'
 );
 ```
-
 **Question 1**
 --
--- Paste Question 1 here
+Create a table named Products with the following constraints:
+ProductID as INTEGER should be the primary key.
+ProductName as TEXT should be unique and not NULL.
+Price as REAL should be greater than 0.
+StockQuantity as INTEGER should be non-negative.
+
+![Screenshot 2025-04-30 220124](https://github.com/user-attachments/assets/690a314c-8a58-4971-9513-6ba79f75978b)
+
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 1
+
+CREATE TABLE Products(
+ProductID integer primary key,
+ProductName varchar(100) unique not null,
+Price Real check(price>0),
+StockQuantity integer check(StockQuantity>0)
+);
+
 ```
 
 **Output:**
 
-![Output1](output.png)
+![Screenshot 2025-04-30 220510](https://github.com/user-attachments/assets/55246a78-9c52-4ed7-a7b7-ec1addcbf07a)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL query to Add a new column named "discount" with the data type DECIMAL(5,2) to the "customer" table.
+
+![Screenshot 2025-04-30 220522](https://github.com/user-attachments/assets/68479e39-c908-472b-aa8a-f0d7d801e508)
+
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 2
+
+ALTER TABLE customer
+ADD COLUMN discount DECIMAL(5,2)
+
 ```
 
 **Output:**
 
-![Output2](output.png)
+![Screenshot 2025-04-30 220535](https://github.com/user-attachments/assets/bc416f42-3a2c-47fb-8de5-c21ce6895407)
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+
+![Screenshot 2025-04-30 220547](https://github.com/user-attachments/assets/c0b8305e-734c-42b6-8d17-ab724e65f2db)
+
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 3
+
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+
 ```
 
 **Output:**
 
-![Output3](output.png)
+![Screenshot 2025-04-30 220601](https://github.com/user-attachments/assets/6540f06d-27f6-484a-a8b2-3ce46f098abd)
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
+
+![Screenshot 2025-04-30 220612](https://github.com/user-attachments/assets/c4b7db4b-c2f7-4f52-8f9e-b8fa3791e430)
+
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 4
+
+CREATE TABLE ProjectAssignments(
+AssignmentID integer primary key,
+EmployeeID integer,
+ProjectID integer,
+AssignmentDate date not null,
+foreign key(EmployeeID) REFERENCES Employees(EmployeeID),
+foreign key(ProjectID) REFERENCES Projects(projectID));
+
 ```
 
 **Output:**
 
-![Output4](output.png)
+![Screenshot 2025-04-30 220620](https://github.com/user-attachments/assets/85332812-a85b-4c27-bc01-53dbb8b51363)
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a table named Events with the following columns:
+
+EventID as INTEGER
+EventName as TEXT
+EventDate as DATE
+
+![Screenshot 2025-04-30 220626](https://github.com/user-attachments/assets/3c88bf66-a401-4afd-bd8d-df974e06bc75)
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 5
+
+create table Events(
+EventID INTEGER,
+EventName TEXT,
+EventDate DATE
+);
+
 ```
 
 **Output:**
 
-![Output5](output.png)
+![Screenshot 2025-04-30 220634](https://github.com/user-attachments/assets/2bf9f615-be51-4152-92fd-3f4dc647fc1d)
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a new table named item with the following specifications and constraints:
+1.item_id as TEXT and as primary key.
+2.item_desc as TEXT.
+3.rate as INTEGER.
+4.icom_id as TEXT with a length of 4.
+5.icom_id is a foreign key referencing com_id in the company table.
+6.The foreign key should cascade updates and deletes.
+7.item_desc and rate should not accept NULL.
+
+![Screenshot 2025-04-30 220641](https://github.com/user-attachments/assets/a9a89e50-ac9f-48f6-9ea9-0a2f802939e0)
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 6
+
+CREATE TABLE item(
+item_id text primary key,
+item_desc text,
+rate integer ,
+icom_id text check(length(icom_id=4)),
+foreign key(icom_id) references company(com_id)
+on update cascade
+on delete cascade
+);
+
 ```
 
 **Output:**
 
-![Output6](output.png)
+![Screenshot 2025-04-30 220650](https://github.com/user-attachments/assets/1ba266cc-41c6-41b7-ba3e-4b624cbc3c7a)
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL Query  to add attribute ISBN as varchar(30) and domain_dept as varchar(30) in the table 'books'
+
+![Screenshot 2025-04-30 220713](https://github.com/user-attachments/assets/beb382f2-49fa-49eb-b89a-8205c364fba0)
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 7
+
+ALTER TABLE books
+ADD ISBN varchar(30);
+ALTER TABLE books
+ADD domain_dept varchar(30);
+
 ```
 
 **Output:**
 
-![Output7](output.png)
+![Screenshot 2025-04-30 220721](https://github.com/user-attachments/assets/00ad40f1-7cb6-4f28-b5a2-ae3b84c0d667)
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Insert the below data into the Employee table, allowing the Department and Salary columns to take their default values.
+
+![Screenshot 2025-04-30 220729](https://github.com/user-attachments/assets/fc4edd58-178e-4613-991b-fe1635f99971)
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 8
+
+INSERT INTO Employee (EmployeeID,Name,Position)
+VALUES(4, 'Emily White', 'Analyst');
+
 ```
 
 **Output:**
 
-![Output8](output.png)
+![Screenshot 2025-04-30 220736](https://github.com/user-attachments/assets/7c12ed3a-f7ba-494e-8fcb-46e9451fd42b)
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Insert all products from Discontinued_products into Products.
+
+Table attributes are ProductID, ProductName, Price, Stock
+
+![Screenshot 2025-04-30 220742](https://github.com/user-attachments/assets/b047fd01-a44f-4951-a231-44d6093863a7)
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 9
+
+INSERT INTO Products(ProductID,ProductName,Price,Stock)
+SELECT ProductID, ProductName, Price, Stock FROM Discontinued_products;
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+![Screenshot 2025-04-30 220749](https://github.com/user-attachments/assets/71d585fe-2b76-43d8-8e50-f1ae7ea0567c)
 
 **Question 10**
 ---
--- Paste Question 10 here
+In the Products table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+![Screenshot 2025-04-30 220800](https://github.com/user-attachments/assets/21849162-5472-484a-9d75-1a974393f0bd)
+
+**Query:**
 
 ```sql
--- Paste your SQL code below for Question 10
+
+INSERT INTO Products(ProductID, Name, Category, Price,Stock)
+VALUES('106','Fitness Tracker','Wearables',NULL,NULL);
+INSERT INTO Products(ProductID, Name, Category, Price,Stock)
+VALUES('107','Laptop','Electronic','999.99','50');
+INSERT INTO Products(ProductID, Name, Category, Price,Stock)
+VALUES('108','Wireless Earbud','Accessorie',NULL,'100');
+
 ```
 
 **Output:**
 
-![Output10](output.png)
+![Screenshot 2025-04-30 220808](https://github.com/user-attachments/assets/1353d9e8-f088-46dc-b2fb-507e20177f1a)
+
+## Module 1 Home Challenge - Grade
+
+![Screenshot 2025-05-01 141022](https://github.com/user-attachments/assets/2cdfa81a-3ba0-4d1a-afdf-9e018931f62c)
 
 
 ## RESULT
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+

@@ -87,4 +87,4 @@ Prerequisite logic (e.g., doctor qualification before assignment) is indirectly 
 ## Result:
 
 The ER diagram successfully models a hospital system where patients book appointments with doctors, and doctors belong to departments.
-It clearly represents entities, relationships, and constraints required for efficient appointment and doctor management.
+It clearly represents entities, relationships, and constraints required for efficient appointment and doctor management..
